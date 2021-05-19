@@ -59,8 +59,44 @@ export default function App() {
       .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   };
 
+  const formSubmit = () => {
+    const newUser = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password,
+      // termsOfService: 
+    }
+    postNewUser(newUser);
+  }
 
+  useEffect(() => {
+    getUsers();
+  }, []);
 
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => setDisabled(!valid))
+  }, [formValues]);
 
+  return (
+    <div className = 'container'>
+      <header><h1>User Data</h1></header>
 
+      <UserForm
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+      />
+
+      {
+        users.map(user => {
+          return (
+            <User key = {user.id} details={user} />
+          )
+          })
+      }
+    </div>
+  )
 };
