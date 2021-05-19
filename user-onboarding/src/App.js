@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import UserCard from './UserCard';
-import Form from './Form';
+import User from './UserCard';
+import UserForm from './Form';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from '../validation/formSchema'
@@ -58,6 +58,14 @@ export default function App() {
       .then(() => setFormErrors({...formErrors, [name]: ''}))
       .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   };
+
+  const inputChange = (name, value) => {
+    validate(name,value)
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
 
   const formSubmit = () => {
     const newUser = {
