@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export default function UserForm(props) {
     const {
@@ -36,10 +36,40 @@ export default function UserForm(props) {
             </div>
             
             <div className = 'form-group inputs'>
-                
+                <h4>User Info</h4>
+                <label>Name
+                    <input
+                        value = {values.name}
+                        onChange = {onChange}
+                        name = 'name'
+                        type = 'text'
+                    />
+                </label>
+                <label>Name
+                    <input
+                        value = {values.email}
+                        onChange = {onChange}
+                        name = 'name'
+                        type = 'text'
+                    />
+                </label>
+                <label>Name
+                    <input
+                        value = {values.password}
+                        onChange = {onChange}
+                        name = 'name'
+                        type = 'text'
+                    />
+                </label>
+                <label>Terms of Service
+                    <input
+                        value = {values.termsOfService}
+                        onChange = {onChange}
+                        name = 'terms of service'
+                        type = 'checkbox'
+                    />
+                </label>
             </div>
         </form>
     )
-
-
 }
